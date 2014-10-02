@@ -1,0 +1,13 @@
+;;; badger-theme-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+(provide 'badger-theme-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; badger-theme-autoloads.el ends here
