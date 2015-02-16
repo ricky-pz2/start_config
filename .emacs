@@ -57,3 +57,7 @@
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
+
+(global-set-key (kbd "C-<backspace>") (lambda ()
+                                        (interactive)
+                                        (kill-line 0)))
