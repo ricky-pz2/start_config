@@ -139,6 +139,10 @@
 ;; (add-hook 'shell-mode-hook 'unset-display-buffer-reuse-frames)
 
 ;; make it harder to kill my shell buffers
+
+(add-to-list 'load-path "~/.emacs.d/plugins/")
+(load "protbuf.el")
+
 (require 'protbuf)
 (add-hook 'shell-mode-hook 'protect-process-buffer-from-kill-mode)
 
