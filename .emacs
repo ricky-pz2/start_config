@@ -73,3 +73,4 @@
 (setq ido-show-dot-for-dired t)
 (setq ido-use-filename-at-point t)
 (setq ido-confirm-unique-completion nil)
+(global-auto-complete-mode t)
