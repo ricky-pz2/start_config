@@ -1,21 +1,31 @@
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+;;(custom-set-variables
+;; '(inhibit-startup-screen t))
+
+;; General Notes about this .emacs
+;; 1. It loads wheatgrass theme by default, 
+;;    if you don't want this or want to change this comment out/edit line 29
+;; 2. Adds melpa marmalade and org repos by default
+;; 3. It checks for packages that should be installed by default (Depending on user).
+;;    You can edit packages starting in line 51
+;; 4. It adds electricpair by default, autocompletes "", {}, [], ()
+;; 5. It adds C-h to delete one char backwards. Uses F6 for help instead
+;; 6. Uses M-k to delete line backwards
+;; 7. Uses F8 to initialize a M-x session
+;; 8. Uses C-c t to use google to translate a region
+;; 9. Uses C-c T to translate (doesn't depend on region)
+;;10. Use M-x google-this (tab to complete commands) to use google from emacs.
+
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  )
 
+;; Definition for tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 (setq column-number-mode t)
 
+;; This is my favorite theme, you can change wheatgrass for anything else.
+;; If you want the default then just comment this line out
 (load-theme 'wheatgrass)
 
 ;;;org-crypt
@@ -28,12 +38,14 @@
 (setq org-crypt-key "624787A7")
 ;;(setq org-crypt-disable-auto-save nil)
 
+;; This is a way to set the emacs repositories
 (setq package-archives
       '(("melpa" . "http://melpa.milkbox.net/packages/")
         ("marmalade" . "http://marmalade-repo.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
-
 (package-initialize)
+
+;; We can check for all packages in emacs to be loaded by default.
 (setq core-packages
       '(;;list of packages you want
         magit
@@ -57,6 +69,7 @@
         hackernews
         ))
 
+;; If the package don't exist install them
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -66,6 +79,7 @@
       (package-install package))))
 (ensure-packages core-packages)
 
+;; This allaws for the aut completition of "" and () [] {}
 (electric-pair-mode 1)
 
 ;; Use shell-like backspace C-h, rebind help to F6
@@ -76,15 +90,23 @@
 ;;(global-set-key (kbd "<return>") 'ignore)
 ;;(global-set-key (kbd "<backspace>") 'ignore)
 
+;; This will allow you to navigate emacs the right way.
+;; It is annoying at first, but I recomend it
 ;(require 'hardcore-mode)
 ;(global-hardcore-mode)
 ;(require 'guru-mode)
 
-;;(require 'google-translate)
-;;(require 'google-translate-default-ui)
-;;(global-set-key "\C-ct" 'google-translate-at-point)
-;;(global-set-key "\C-cT" 'google-translate-query-translate)
+;; Google translate
+(require 'google-translate)
+(require 'google-translate-default-ui)
 
+;; You can highlight a region, and use C-c t to translate from a language to another
+(global-set-key "\C-ct" 'google-translate-at-point)
+;; You can use C-c T and it will ask for source language to target language.
+;;Then it asks for input on what to translate
+(global-set-key "\C-cT" 'google-translate-query-translate)
+
+;; Kill backwards
 (global-set-key "\M-k" '(lambda () (interactive) (kill-line 0)) )
 (setq confirm-nonexistent-file-or-buffer nil)
 
@@ -104,6 +126,8 @@
 ;; Use auto complete everywhere
 (global-auto-complete-mode t)
 
+;; Defining local shells
+;; Moste of the configuration below here is for M-x shell
 (defvar my-local-shells
   '("*shell0*" "*shell1*" "*shell2*" "*shell3*"))
 (defvar my-remote-shells
@@ -111,6 +135,7 @@
 (defvar my-shells (append my-local-shells my-remote-shells))
 
 (require 'tramp)
+
 
 (custom-set-variables
  '(tramp-default-method "ssh")          ; uses ControlMaster
@@ -126,6 +151,7 @@
                                         ; line above the current prompt
  '(comint-input-ring-size 5000)         ; max shell history size
  '(protect-buffer-bury-p nil)
+ '(inhibit-startup-screen t)
  )
 
 (setenv "PAGER" "cat") ;This is to show how to make enviroments
