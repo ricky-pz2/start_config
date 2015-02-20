@@ -28,10 +28,43 @@
 (setq org-crypt-key "624787A7")
 ;;(setq org-crypt-disable-auto-save nil)
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t))
+(setq package-archives
+      '(("melpa" . "http://melpa.milkbox.net/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
+
+(package-initialize)
+(setq core-packages
+      '(;;list of packages you want
+        magit
+        nyan-mode
+        projectile
+        rainbow-delimiters
+        hardcore-mode
+        guru-mode
+        nginx-mode
+        auto-complete
+        google-this
+        google-translate
+        howdoi
+        ipretty
+        markdown-mode
+        nginx-mode
+        org
+        org-gcal
+        org-jekyll
+        org-pandoc
+        hackernews
+        ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(defun ensure-packages (packages)
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (package-install package))))
+(ensure-packages core-packages)
 
 (electric-pair-mode 1)
 
@@ -40,23 +73,17 @@
 (global-set-key (kbd "<f6>") 'help-command)
 ;;(setq too-hardcore-backspace t)
 ;;(setq too-hardcore-return t)
-(global-set-key (kbd "<return>") 'ignore)
-(global-set-key (kbd "<backspace>") 'ignore)
+;;(global-set-key (kbd "<return>") 'ignore)
+;;(global-set-key (kbd "<backspace>") 'ignore)
 
-(require 'hardcore-mode)
-(global-hardcore-mode)
-(require 'guru-mode)
+;(require 'hardcore-mode)
+;(global-hardcore-mode)
+;(require 'guru-mode)
 
 ;;(require 'google-translate)
 ;;(require 'google-translate-default-ui)
 ;;(global-set-key "\C-ct" 'google-translate-at-point)
 ;;(global-set-key "\C-cT" 'google-translate-query-translate)
-
-(require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 (global-set-key "\M-k" '(lambda () (interactive) (kill-line 0)) )
 (setq confirm-nonexistent-file-or-buffer nil)
@@ -80,7 +107,7 @@
 (defvar my-local-shells
   '("*shell0*" "*shell1*" "*shell2*" "*shell3*"))
 (defvar my-remote-shells
-  '("*goatshell*" "*barn0*" "*barn1*" "*barn2*" "*barn3*"))
+  '("*shell*" "*lshell0*" "*lshell1*" "*lshell2*" "*lshell3*"))
 (defvar my-shells (append my-local-shells my-remote-shells))
 
 (require 'tramp)
@@ -214,3 +241,12 @@
   (if (not unread-command-events)
       ;; comint's "Type space to flush" swallows space. put it back in.
       (setq unread-command-events (listify-key-sequence " "))))
+
+(global-set-key [f8] 'create-shell)
+
+(defun create-shell ()
+  "creates a shell with a given name"
+  (interactive);; "Prompt\n shell name:")
+  (let ((shell-name (read-string "shell name: " nil)))
+        (shell (concat "*" shell-name "*"))))
+
