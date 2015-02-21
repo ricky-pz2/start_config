@@ -276,3 +276,4 @@
   (let ((shell-name (read-string "shell name: " nil)))
         (shell (concat "*" shell-name "*"))))
 
+(setq inferior-lisp-program "clisp")
