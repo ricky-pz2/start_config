@@ -274,7 +274,6 @@
   (let ((shell-name (read-string "shell name: " nil)))
         (shell (concat "*" shell-name "*"))))
 
-<<<<<<< HEAD
 
 (add-to-list 'auto-mode-alist '("\\.py\\'" . hs-minor-mode))
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
@@ -285,6 +284,3 @@
 (add-hook 'sh-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (put 'erase-buffer 'disabled nil)
-=======
-(setq inferior-lisp-program "clisp")
->>>>>>> a77e5cf6d5dd56ed1e22cb392b17ec7deab6c610
