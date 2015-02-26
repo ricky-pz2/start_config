@@ -1,5 +1,5 @@
 ;;(custom-set-variables
-;; '(inhibit-startup-screen t))
+;;'(inhibit-startup-screen t))
 
 ;; General Notes about this .emacs
 ;; 1. It loads wheatgrass theme by default, 
@@ -48,6 +48,7 @@
 ;; We can check for all packages in emacs to be loaded by default.
 (setq core-packages
       '(;;list of packages you want
+        bind-key
         magit
         nyan-mode
         projectile
@@ -85,10 +86,7 @@
 ;; Use shell-like backspace C-h, rebind help to F6
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f6>") 'help-command)
-;;(setq too-hardcore-backspace t)
-;;(setq too-hardcore-return t)
-;;(global-set-key (kbd "<return>") 'ignore)
-;;(global-set-key (kbd "<backspace>") 'ignore)
+
 
 ;; This will allow you to navigate emacs the right way.
 ;; It is annoying at first, but I recomend it
@@ -180,7 +178,7 @@
 
 (defun set-scroll-conservatively ()
 ;  "Add to shell-mode-hook to prevent jump-scrolling on newlines in shell buffers."
-  (set (make-local-variable 'scroll-conservatively) 10))
+ (set (make-local-variable 'scroll-conservatively) 10))
 (add-hook 'shell-mode-hook 'set-scroll-conservatively)
 
 ;; i think this is wrong, and it buries the shell when you run emacsclient from
@@ -276,3 +274,13 @@
   (let ((shell-name (read-string "shell name: " nil)))
         (shell (concat "*" shell-name "*"))))
 
+
+(add-to-list 'auto-mode-alist '("\\.py\\'" . hs-minor-mode))
+(add-hook 'c-mode-common-hook 'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'java-mode-hook 'hs-minor-mode)
+(add-hook 'lisp-mode-hook 'hs-minor-mode)
+(add-hook 'perl-mode-hook 'hs-minor-mode)
+(add-hook 'sh-mode-hook 'hs-minor-mode)
+(add-hook 'python-mode-hook 'hs-minor-mode)
+(put 'erase-buffer 'disabled nil)
