@@ -1,0 +1,8 @@
+((("falseURxvt.scrollBar:" .
+   [8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("load-theme" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("base16-atelierestuary-dark" .
+   [1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("This" .
+   [1 0 0 0])))

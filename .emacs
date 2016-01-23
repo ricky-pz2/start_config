@@ -16,8 +16,13 @@
 ;;10. Use M-x google-this (tab to complete commands) to use google from emacs.
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
+;; Load the Eostuary Dark Theme
 ;; Definition for tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -137,21 +142,25 @@
 
 
 (custom-set-variables
- '(tramp-default-method "ssh")          ; uses ControlMaster
- '(comint-scroll-to-bottom-on-input t)  ; always insert at the bottom
- '(comint-scroll-to-bottom-on-output nil) ; always add output at the bottom
- '(comint-scroll-show-maximum-output t) ; scroll to show max possible output
- ;; '(comint-completion-autolist t)     ; show completion list when ambiguous
- '(comint-input-ignoredups t)           ; no duplicates in command history
- '(comint-completion-addsuffix t)       ; insert space/slash after file completion
- '(comint-buffer-maximum-size 20000)    ; max length of the buffer in lines
- '(comint-prompt-read-only nil)         ; if this is t, it breaks shell-command
- '(comint-get-old-input (lambda () "")) ; what to run when i press enter on a
-                                        ; line above the current prompt
- '(comint-input-ring-size 5000)         ; max shell history size
- '(protect-buffer-bury-p nil)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(comint-buffer-maximum-size 20000)
+ '(comint-completion-addsuffix t)
+ '(comint-get-old-input (lambda nil "") t)
+ '(comint-input-ignoredups t)
+ '(comint-input-ring-size 5000)
+ '(comint-move-point-for-output nil)
+ '(comint-prompt-read-only nil)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
+ '(custom-safe-themes
+   (quote
+    ("e2e4e109357cfcebccb17961950da6b84f72187ade0920a4494013489df648fe" default)))
  '(inhibit-startup-screen t)
- )
+ '(protect-buffer-bury-p nil t)
+ '(tramp-default-method "ssh"))
 
 (setenv "PAGER" "cat") ;This is to show how to make enviroments
 
@@ -333,3 +342,10 @@
   (insert "if __name__ == \"__main__\":\n")
   (insert "\tmain()\n")
 )
+
+(setq org-bullets-bullet-list '("◉" "◎" "⚫" "○" "►" "◇"))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+                          (sequence "⚑ WAITING(w)" "|")
+                          (sequence "|" "✘ CANCELED(c)")))
