@@ -56,7 +56,7 @@
       '(;;list of packages you want
         bind-key
         magit
-        nyan-mode
+        ;;nyan-mode
         projectile
         rainbow-delimiters
         hardcore-mode
@@ -69,11 +69,11 @@
         ipretty
         markdown-mode
         nginx-mode
-        org
-        org-gcal
-        org-jekyll
-        org-pandoc
-	org-bullets
+        ;org
+        ;org-gcal
+        ;org-jekyll
+        ;org-pandoc
+        org-bullets
         hackernews
         ))
 
@@ -343,6 +343,35 @@
   (insert "if __name__ == \"__main__\":\n")
   (insert "\tmain()\n")
 )
+
+(defun start-beamer ()
+  (interactive)
+  (insert "#+AUTHOR: Ricardo Perez\n")
+  (insert "#+TITLE: Presentation\n")
+  (insert "#+DATE: December 3rd, 1991\n")
+  (insert "#+OPTIONS: texht:t H:2\n")
+  (insert "#+LATEX_CLASS: article\n")
+  (insert "#+LATEX_CLASS_OPTIONS:\n") 
+  (insert "#+LATEX_HEADER: \mode<beamer>{\usetheme{Berkeley}}\n")
+  (insert "#+LATEX_HEADER_EXTRA: \usecolortheme{beetle}\n")
+  (insert "#+LATEX_HEADER_EXTRA: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}\n")
+  (insert "#+startup: beamer\n")
+  (insert "#+LATEX_CLASS: beamer\n")
+  (insert "#+LATEX_CLASS_OPTIONS: [bigger]\n")
+  (insert "#+BEAMER_FRAME_LEVEL: 2\n")
+  (insert "#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)\n")
+  (insert "\n")
+  (insert "* Introduction\n")
+  (insert "** A Simple Slide\n")
+  (insert "This slide is only bulletpoints:\n")
+  (insert "\n")
+  (insert "- The first @important@ point\n")
+  (insert "- The previous gives an 'alert' tag\n")
+  (insert "\n")
+  (insert "The above list  could have been numbered or have sublist\n")
+  (insert "\n")
+)
+
 
 (setq org-bullets-bullet-list '("◉" "◎" "⚫" "○" "►" "◇"))
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
